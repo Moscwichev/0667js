@@ -1,0 +1,106 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Авторизация</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Домой</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Авторизация</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
+  
+  <!--================Login Box Area =================-->
+	<section class="login_box_area section-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<div class="hover">
+							<h4>Вы здесь первый раз?</h4>
+							<p>Если ответ на этот вопрос утвердительный - вы на верном пути!</p>
+							<a class="button button-account" href="/reg">В путь!</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>Авторизироваться</h3>
+						<form class="row login_form" onsubmit="sendForm(this); return false;">
+							<div class="col-md-12 form-group">
+								<input type="email" class="form-control" id="email" name="email" placeholder="Email"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+									
+							</div>
+							<p class="col-md-12 form-group" id="info" style="color: red"></p>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="pass" name="pass" placeholder="Пароль"
+									onfocus="this.placeholder = ''" onblur="this.placeholder = 'Пароль'">
+									
+						<span
+							class="material-icons eye"
+							onmousedown="pass.type = 'text'; this.nextElementSibling.hidden = false; this.hidden = true;"
+							>&nbsp;&#xe8f4;</span
+						>
+						<span
+							class="material-icons"
+							hidden
+							onmouseup="pass.type = 'password'; this.previousElementSibling.hidden = false; this.hidden = true;"
+							>&nbsp;&#xe8f5;</span
+						>
+							</div>
+							
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="button button-login w-100">Войти</button>
+								<a href="#">Забыли пароль?</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+
+	<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">Авторизация прошла успешно</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  Удачных Покупок!
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	  <script>
+		  async function sendForm(form) {
+			  let formData = new FormData(form);
+			  let response = await fetch("authUser", {
+				  method: "POST",
+				  body: formData,
+			  });
+			  let res = await response.json();
+			  if (res.result == "success") {
+				  $('#myModal').modal('show');
+				  setTimeout(()=>{
+					  location.href = "users/profile";
+				  }, 3000)
+			  }else if (res.result == "exist"){
+				  info.innerText = "Почта или пароль неверны!";
+			  }
+	  
+		  }
+	  </script>
