@@ -65,14 +65,5 @@ $valera = new Person("Valera", "Ivanov", 15, $olga, $alex);
 echo $valera->getInfo();
 
 
-//echo $valera->getMother()->getFather()->getName();
 
 
-//$medKit = 50;
-//Здоровье человека не может быть выше 100
-// echo $alex->name;
-// echo $alex->sayHi($igor->name);
-// $alex->setHp(-30); //Упал
-// echo $alex->getHp()."<br>";
-// $alex->setHp($medKit); //Нашел аптечку
-// echo $alex->getHp();
